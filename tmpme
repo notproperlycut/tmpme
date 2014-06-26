@@ -4,7 +4,8 @@
 # Help: Create a temporary directory and drop me in it.
 # Copy any files supplied as arguments. Creates a new 
 # shell, must exit using: "exit-tmpme"
-tmpme=`mktemp -d`
+mkdir -p $HOME/tmp
+tmpme=`mktemp -d --tmpdir=$HOME/tmp XXXXXXXX`
 [ $1 ] && cp -r $* $tmpme
 cd $tmpme
 init="alias exit='echo \"exit disabled, type exit-tmpme instead\"' ; alias exit-tmpme='\exit' ; . ~/.bashrc"
